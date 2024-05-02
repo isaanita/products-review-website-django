@@ -1,0 +1,22 @@
+<!-- templates/product_review.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Review Product</title>
+</head>
+<body>
+    <h1>Review {{ product.name }}</h1>
+    <form method="post" action="{% url 'add_review' product.id %}">
+        {% csrf_token %}
+        <label for="author">Your Name:</label><br>
+        <input type="text" id="author" name="author"><br>
+        <label for="content">Review:</label><br>
+        <textarea id="content" name="content"></textarea><br>
+        <label for="rating">Rating (1-5):</label><br>
+        <input type="number" id="rating" name="rating" min="1" max="5"><br>
+        <button type="submit">Submit Review</button>
+    </form>
+</body>
+</html>
