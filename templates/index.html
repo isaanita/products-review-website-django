@@ -16,7 +16,8 @@
           <div class="card-body">
             <h5 class="card-title">{{ product.name }}</h5>
             <p class="card-text">{{ product.description }}</p>
-            <a href="#" class="btn btn-primary">Products Detail</a>
+            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Product Detail</a>
+            <a href="{% url 'product_reviews' product.id %}" class="btn btn-primary">Reviews</a>
           </div>
         </div>
       </div>
