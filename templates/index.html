@@ -1,76 +1,37 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} HOME {% endblock %}
+{% block title %} HOME {% endblock%}
 {% block content %}
+{% include 'navbar.html' %}
 
+<img src="{% static 'img/banner_proview.png' %}" class="img-fluid mb-4" alt="ProView Banner" />
 
-  {% include 'navbar.html' %}
-
-  <img src="{% static 'img/banner_proview.png' %}" class="img-fluid mb-4" alt="ProView Banner">
-
-  <div class="container">
-    <h1 id="products" class="text_style2 pink mb-4 mt-6">products</h1>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <img src="{% static 'img/cushion_something.jpeg' %}" class="card-img-top" alt="Cushion Something">
-          <div class="card-body">
-            <h5 class="card-title">{{ product.name }}</h5>
-            <p class="card-text">{{ product.description }}</p>
-            <a href="#" class="btn btn-primary">Products Detail</a>
-          </div>
-        </div>
+<div class="container">
+  <h1 id="products" class="text_style2 pink mb-4 mt-6">products</h1>
+  <div class="row">
+    {% for product in products %}
+<div class="col-md-4">
+  <div class="card mb-3">
+    <!-- {% if product.cover %} -->
+    <!-- <img src="{{ product_cover_url }}" class="card-img-top" alt="{{ product.name }}"> -->
+    <!-- {% else %} -->
+    <img src="{% static 'img/default-cover.jpg' %}" class="card-img-top" alt="Default Cover">
+    <!-- {% endif %} -->
+    <div class="card-body">
+      <h5 class="card-title">{{ product.name }}</h5>
+      <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+      <div class="btn-area">
+        {% if product.id %}
+        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Products Detail</a>
+        <a href="{% url 'product_reviews' product.id %}" class="btn btn-primary">Reviews</a>
+        {% else %}
+        <p>No product ID available</p>
+        {% endif %}
       </div>
-      {% endfor %}
     </div>
   </div>
-
-  <div class="container mx-auto" style="max-width: 1230px;">
-    <div class="row">
-      <div class="card mb-3" style="max-width: 400px; margin-right: 15px;">
-        <div class="row g-0">
-          <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <img src="{% static 'img/cushion_instaperfect.jpeg' %}" class="card-img-top" alt="Cushion Instaperfect">
-          <div class="card-body">
-            <!-- <h5 class="card-title">Cushion Something</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <div class="btn-area">
-              <a href="#" class="btn btn-main">Make Review</a>
-              <a href="#" class="btn btn-second">Products Detail</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-4">
-        <div class="card mb-3">
-          <img src="{% static 'img/glasting_lip.jpeg' %}" class="card-img-top" alt="Glasting Lip">
-          <div class="card-body">
-            <!-- <h5 class="card-title">Cushion Something</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
-            <div class="btn-area">
-              <a href="#" class="btn btn-main">Make Review</a>
-              <a href="#" class="btn btn-second">Products Detail</a>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-      
-
-      <!-- Add more cards here if needed -->
-
-    </div>
+</div>
+{% endfor %}
   </div>
-
+</div>
 {% endblock %}

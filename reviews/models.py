@@ -4,6 +4,10 @@ from django.db import models
 class Product(models.Model):
     name = models.CharField(max_length=100)
     description = models.TextField()
+    cover = models.ImageField(upload_to='cover/', null=True)
+    benefits = models.TextField(null=True, blank=True)
+    variants = models.TextField(null=True, blank=True)
+    weight = models.TextField(null=True, blank=True)
     # cover = models.ImageField(upload_to='cover/', null=True)
 
 class Review(models.Model):

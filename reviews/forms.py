@@ -10,8 +10,9 @@ class FormProduct(ModelForm):
 
     widgets = {
       'name' : forms.TextInput({'class':'form-control'}),
-      'description' : forms.TextInput({'class':'form-control'}),
-    #   'penerbit' : forms.TextInput({'class':'form-control'}),
-    #   'jumlah' : forms.NumberInput({'class':'form-control'}),
-    #   'kelompok_id' : forms.Select({'class':'form-control'}),
+      'description' : forms.Textarea({'class':'form-control'}),
+      'cover' : forms.FileInput({'class':'form-control'}),
+      'benefits' : forms.Textarea({'class':'form-control'}),
+      'variants' : forms.Textarea({'class':'form-control'}),
+      'weight' : forms.TextInput({'class':'form-control'}),
     }

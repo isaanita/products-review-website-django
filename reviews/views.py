@@ -2,22 +2,20 @@ from django.shortcuts import render
 
 from reviews.forms import FormProduct
 from reviews.models import Product, Review
+from django.shortcuts import render, redirect
+
 
 # Create your views here.
-# def index(request):
-#     return render(request, 'index.html')
 
 def home(request):
-    products = Product.objects.all()
+    # products = Product.objects.all()
+    products = Product.objects.all()[:3]  # Ambil tiga produk pertama
     return render(request, 'index.html', {'products': products})
 
-def product_detail(request, product_id):
+def product_reviews(request, product_id):
     product = Product.objects.get(pk=product_id)
-    return render(request, 'product_detail.html', {'product': product})
-
-def product_review(request, product_id):
-    product = Product.objects.get(pk=product_id)
-    return render(request, 'product_review.html', {'product': product})
+    reviews = Review.objects.filter(product=product)
+    return render(request, 'product_reviews.html', {'product': product, 'reviews': reviews})
 
 def add_review(request, product_id):
     if request.method == 'POST':
@@ -28,6 +26,11 @@ def add_review(request, product_id):
         review = Review(product=product, author=author, content=content, rating=rating)
         review.save()
         return redirect('product_detail', product_id=product_id)
+    
+def product_list(request):
+    products = Product.objects.all()
+    return render(request, 'products.html', {'products': products})
+
     
 def product(request):
     products = Product.objects.all()
@@ -59,3 +62,24 @@ def add_product(request):
         }
 
     return render(request, 'add_product.html', konteks)
+
+def product_detail(request, product_id):
+    product = Product.objects.get(pk=product_id)
+    reviews = Review.objects.filter(product=product)
+    return render(request, 'product_detail.html', {'product': product, 'reviews': reviews})
+
+
+from django.shortcuts import render, get_object_or_404
+from .models import Product
+
+def ImagePath(request, product_id):
+    # Menggunakan get_object_or_404 untuk mendapatkan objek Product
+    product = get_object_or_404(Product, id=product_id)
+
+    # Mengambil URL cover dan mengganti tanda slash menjadi backslash
+    if product.cover:
+        product_cover_url = product.cover.url.replace("/", "\\")
+    else:
+        product_cover_url = None
+
+    return render(request, 'index.html', {'product': product, 'product_cover_url': product_cover_url})
