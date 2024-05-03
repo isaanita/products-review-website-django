@@ -1,26 +1,4 @@
-<!-- <nav class="navbar navbar-expand-lg header bg-white">
-      <a class="navbar-brand text-black text_logo " href="#">ProView</a> -->
-      <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button> -->
-      <!-- <div class="collapse navbar-collapse" id="navbarText">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link text_style1 " aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text_style1 " href="{% url 'product_list' %}products">Products</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text_style1 " href="#">Products detail</a>
-          </li>
-        </ul> -->
-        <!-- <span class="navbar-text">
-          Navbar text with an inline element
-        </span> -->
-      <!-- </div>
-  </nav> -->
-
+<!-- ini adalah component navbar yg dapat digunakan berkali kali alias reusable -->
   <nav class="navbar navbar-expand-lg header bg-white">
     <a class="navbar-brand text-black text_logo " href="#">ProView</a>
     <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,7 +14,7 @@
           <a class="nav-link text_style1 " href="{% url 'product_list' %}">Products</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text_style1 " href="#">Products detail</a>
+          <a class="nav-link text_style1 " href="{% url 'add_product' %}">Add Product</a>
         </li>
       </ul>
       <!-- <span class="navbar-text">

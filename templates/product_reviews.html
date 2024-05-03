@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- mengambil base html agar tempate bootstrap ikut terambil tanpa harus mendeskripsikannya berulang -->
 {% block title %} Product Reviews {% endblock %}
 {% block content %}
 
-  {% include 'navbar.html' %}
+  {% include 'navbar.html' %} <!-- menambahkan component navbar agar tidak perlu menambahkan secara manual -->
 
   <div class="container">
     <h2>{{ product.name }}</h2>
@@ -10,11 +10,32 @@
 
     <h3>Reviews</h3>
     <ul>
-      {% for review in reviews %}
-      <li>{{ review.author }} - {{ review.content }} - Rating: {{ review.rating }}</li>
+      {% for review in reviews %} <!-- mengambil reviews yg ada difunction diviews dan dinamai review -->
+      <!-- <li>{{ review.author }} - {{ review.content }} - Rating: {{ review.rating }}</li> -->
+      <div class="row text-center d-flex align-items-stretch">
+        <div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
+          <div class="card testimonial-card">
+            <div class="card-up" style="background-color: #9d789b;"></div>
+            <div class="avatar mx-auto">
+              <img src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(1).webp"
+                class="rounded-circle img-fluid" />
+            </div>
+            <div class="card-body">
+              <h4 class="mb-4">{{ review.author }}</h4>
+              <h6>Rating: {{ review.rating }}</h6>
+              <hr />
+              <p class="dark-grey-text mt-4">
+                <i class="fas fa-quote-left pe-2"></i>{{ review.content }}
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
       {% endfor %}
     </ul>
 
+    <!-- agar user bisa menambahkan review -->
     <h3>Add Review</h3>
     <form method="post" action="{% url 'add_review' product.id %}">
       {% csrf_token %}

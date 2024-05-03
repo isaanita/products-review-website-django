@@ -1,15 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- mengambil base html agar tempate bootstrap ikut terambil tanpa harus mendeskripsikannya berulang -->
 {% load static %}
-{% block title %} HOME {% endblock%}
+{% block title %} HOME {% endblock%} <!-- title untuk halaman ini -->
 {% block content %}
-{% include 'navbar.html' %}
+{% include 'navbar.html' %} <!-- menambahkan component navbar agar tidak perlu menambahkan secara manual -->
 
 <img src="{% static 'img/banner_proview.png' %}" class="img-fluid mb-4" alt="ProView Banner" />
 
+<!-- container dibawah adalah card untuk menampilkan product-->
 <div class="container">
   <h1 id="products" class="text_style2 pink mb-4 mt-6">products</h1>
   <div class="row">
-    {% for product in products %}
+    {% for product in products %} <!-- mengambil products yg ada difunction diviews dan dinamai product -->
 <div class="col-md-4">
   <div class="card mb-3">
     <!-- {% if product.cover %} -->
@@ -19,11 +20,11 @@
     <!-- {% endif %} -->
     <div class="card-body">
       <h5 class="card-title">{{ product.name }}</h5>
-      <p class="card-text">{{ product.description|truncatechars:100 }}</p>
+      <p class="card-text">{{ product.description|truncatechars:100 }}</p> <!-- truncatechars agar text tidak melebihi 100 karakter -->
       <div class="btn-area">
         {% if product.id %}
-        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Products Detail</a>
-        <a href="{% url 'product_reviews' product.id %}" class="btn btn-primary">Reviews</a>
+        <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Products Detail</a> <!-- navigate ke halaman detail product-->
+        <a href="{% url 'product_reviews' product.id %}" class="btn btn-primary">Reviews</a> <!-- navigate ke halaman reviews agar user bisa menambahkan review -->
         {% else %}
         <p>No product ID available</p>
         {% endif %}
@@ -34,4 +35,6 @@
 {% endfor %}
   </div>
 </div>
+
+  <h4 class="mt-5 mb-5">By : Isa Anita & Oksadeebila</h4>
 {% endblock %}

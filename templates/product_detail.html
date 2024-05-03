@@ -1,8 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- mengambil base html agar tempate bootstrap ikut terambil tanpa harus mendeskripsikannya berulang -->
 {% block title %} Product Detail {% endblock %}
 {% block content %}
 
-  {% include 'navbar.html' %}
+  {% include 'navbar.html' %} <!-- menambahkan component navbar agar tidak perlu menambahkan secara manual -->
 
   <div class="container">
     <h2>{{ product.name }}</h2>
@@ -30,7 +30,7 @@
           </div>
         </div>
       
-        {% for review in reviews %}
+        {% for review in reviews %} <!-- mengambil reviews yg ada difunction diviews dan dinamai review -->
         <div class="row text-center d-flex align-items-stretch">
           <div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
             <div class="card testimonial-card">

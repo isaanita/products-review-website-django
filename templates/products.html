@@ -1,14 +1,14 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} <!-- mengambil base html agar tempate bootstrap ikut terambil tanpa harus mendeskripsikannya berulang -->
 {% load static %}
 {% block title %} Products {% endblock %}
 {% block content %}
 
-{% include 'navbar.html' %}
+{% include 'navbar.html' %} <!-- menambahkan component navbar agar tidak perlu menambahkan secara manual -->
 
 <div class="container">
   <h2>All Products</h2>
   <div class="row">
-    {% for product in products %}
+    {% for product in products %} <!-- mengambil products yg ada difunction diviews dan dinamai product -->
     <div class="col-md-4">
       <div class="card mb-3">
         <!-- <img src="{% static 'img/cushion_something.jpeg' %}" class="card-img-top" alt="Cushion Something"> -->
@@ -20,7 +20,15 @@
         <div class="card-body">
           <h5 class="card-title">{{ product.name }}</h5>
           <p class="card-text">{{ product.description }}</p>
-          <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Product Detail</a>
+          <!-- <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Product Detail</a> -->
+          <div class="btn-area">
+            {% if product.id %}
+            <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">Products Detail</a> <!-- navigate ke halaman detail product-->
+            <a href="{% url 'product_reviews' product.id %}" class="btn btn-primary">Reviews</a> <!-- navigate ke halaman reviews agar user bisa menambahkan review -->
+            {% else %}
+            <p>No product ID available</p>
+            {% endif %}
+          </div>
         </div>
       </div>
     </div>
